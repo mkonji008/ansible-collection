@@ -1,7 +1,0 @@
-domain_name: "domain.com"
-htmx_app_image: "htmx_docker_image"
-rate_limit: "10r/s"
-aws_region: "us-east-1"
-certbot_email: "email@email.com"
-security_group_name: "htmx-app-sg"
-
