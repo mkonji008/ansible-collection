@@ -1,0 +1,9 @@
+---
+- name: Deploy HTMX Application on AWS EC2
+  hosts: htmx-server
+  become: yes
+  roles:
+    - docker
+    - nginx
+    - certbot
+

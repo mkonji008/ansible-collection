@@ -1,0 +1,12 @@
+server {
+    listen 80;
+    server_name {{ domain_name }};
+    
+    location / {
+        proxy_pass http://localhost:8000;
+        limit_req zone=one burst=10 nodelay;
+    }
+
+    limit_req_zone $binary_remote_addr zone=one:10m rate={{ rate_limit }};
+}
+

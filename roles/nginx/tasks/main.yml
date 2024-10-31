@@ -1,0 +1,12 @@
+---
+- name: Install NGINX
+  amazon.aws.package:
+    name: nginx
+    state: present
+
+- name: Configure NGINX
+  template:
+    src: htmx.conf.j2
+    dest: /etc/nginx/conf.d/htmx.conf
+  notify: restart nginx
+
