@@ -7,8 +7,11 @@ My personal Ansible automation collection.
 ## Ansible Projects
 
 ### AWS
-- **HTMX on AWS**: [aws-ec2-htmx](https://github.com/mkonji008/ansible-collection/tree/aws-ec2-htmx) - Deploy a minimal HTMX container app on AWS EC2 with NGINX and Certbot SSL.
+- [aws-ec2-htmx](https://github.com/mkonji008/ansible-collection/tree/aws-ec2-htmx)  **HTMX on AWS**:
+    - Deploy a minimal HTMX container app on AWS EC2 with NGINX and Certbot SSL.
 
 ### GCP
 
-- **HUGO + HTMX cluster on EKS in GCP**: [gcp-gke-hugo-htmx](https://github.com/mkonji008/ansible-collection/tree/gcp-gke-hugo-htmx) - Setup a hugo static site that leverages htmx for dynamic elements and deploying a hugo site with htmx integration on a gke cluster in gcp.
+
+- [gcp-gke-hugo-htmx](https://github.com/mkonji008/ansible-collection/tree/gcp-gke-hugo-htmx) **HUGO + HTMX cluster on EKS in GCP**:
+  - Setup a hugo static site that leverages htmx for dynamic elements and deploying a hugo site with htmx integration on a gke cluster in gcp.
