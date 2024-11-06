@@ -2,7 +2,7 @@
 
 My personal Ansible automation collection.
 
-This repository contains various automation playbooks and roles designed to simplify and streamline application deployments and management across different environments. I have a another large private repo with much more and I'll add other projects once I scrub them.
+ Playbooks for CM and deployments across different environments. I have a another large private repo with much more and I'll add other projects once I scrub them.
 
 ## Ansible Projects
 
