@@ -1,0 +1,87 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Check pre-requisites (optional)
+      # ... (pre-requisite tasks remain unchanged)
+
+    - name: Include variables
+      include_vars: vars.yaml
+
+    - name: Call deploy_gke_cluster role with variables
+      include_role:
+        name: deploy_gke_cluster
+        vars:
+          project_id: "{{ gcp_project_id }}"
+          cluster_name: "{{ gke_cluster_name }}"
+          # Add more role variables as needed
+
+  roles:
+    - deploy_gke_cluster:
+        vars:
+          # Define role-specific variables here if needed
+          machine_type: "{{ gke_machine_type }}"
+          initial_node_count: "{{ gke_node_count }}"
+          region: "{{ gke_region }}"
+          # ... (add other role-specific variables)
+
+    - deploy_hugo_site:
+        vars:
+          hugo_image: "{{ your_hugo_image }}"
+          hugo_repository: "{{ your_hugo_repo }}"
+          namespace: "{{ hugo_namespace }}"
+          # Add more role variables as needed
+          service_account_name: "{{ hugo_service_account_name }}"
+
+    - configure_htmx:
+        vars:
+          # Add role variables for htmx configuration as needed
+
+  post_tasks:
+    - name: Verify GKE cluster health
+      google.gcp.container_cluster:
+        name: "{{ gke_cluster_name }}"
+        state: present
+        register: cluster_check
+      failed_when: cluster_check.rc != 0
+
+    - name: Check pods in Hugo namespace are running
+      kubernetes.core.v1.pod:
+        namespace: "{{ hugo_namespace }}"
+        state: present
+      register: pod_check
+      failed_when: pod_check.rc != 0
+
+    - name: Check Hugo service is exposed externally
+      kubernetes.core.v1.service:
+        name: "hugo-service"
+        namespace: "{{ hugo_namespace }}"
+        state: present
+      register: service_check
+      failed_when: service_check.rc != 0
+
+    - name: Get external IP address of Hugo service (optional)
+      when: service_check.state == "present"
+      kubernetes.core.v1.service:
+        name: "hugo-service"
+        namespace: "{{ hugo_namespace }}"
+      register: service_details
+
+    - name: Print external IP address (optional)
+      debug:
+        msg: "Access your Hugo site at http://{{ service_details.items[0].status.loadBalancer.ingress[0].ip }}"
+      when: service_details is defined
+
+    - name: Test accessibility of Hugo service (optional)
+      uri:
+        url: http://{{ service_details.items[0].status.loadBalancer.ingress[0].ip }}"
+        return_code: 200
+      register: site_access
+      failed_when: site_access.rc != 0
+
+    - name: Print success message if site is accessible (optional)
+      debug:
+        msg: "Your Hugo site with htmx is successfully deployed and accessible!"
+      when: site_access.rc == 200

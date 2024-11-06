@@ -1,0 +1,36 @@
+---
+- hosts: gke
+  connection: kubernetes
+  gather_facts: no
+
+  tasks:
+    - name: Create namespace for Hugo site
+      kubernetes.core.v1.namespace:
+        name: "hugo-site"
+
+    - name: Deploy Hugo site using Helm chart
+      kubernetes.helm:
+        name: "hugo"
+        chart: "stable/hugo"
+        namespace: "hugo-site"
+        values:
+          image: "your-hugo-image"
+          repository: "https://your-hugo-repo.git"
+          buildArgs:
+            - name: HUGO_VERSION
+              value: "0.94.1"
+
+    - name: Expose Hugo service externally
+      kubernetes.core.v1.service:
+        name: "hugo-service"
+        namespace: "hugo-site"
+        type: "LoadBalancer"
+        port: 80
+        target_port: 1313
+        selector:
+          app: hugo
+
+  # todo tasks for:
+  # - config persistent volumes for site content
+  # - set up ingress for routing external traffic
+  # - integrate cicd pipeline for automated deployments

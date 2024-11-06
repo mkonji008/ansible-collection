@@ -1,0 +1,14 @@
+gcp_project_id: "your-gcp-project-id"
+gke_cluster_name: "your-gke-cluster-name"
+service_account_file_path: "/path/to/your/service-account.json"
+
+# GKE Cluster Creation specific variables
+gke_machine_type: "e2-micro"
+gke_node_count: 2
+gke_region: "us-central1"
+
+# Hugo Deployment specific variables
+your_hugo_image: "your-hugo-image"
+your_hugo_repo: "https://your-hugo-repo.git"
+hugo_namespace: "hugo-site"
+hugo_service_account_name: "hugo-sa"

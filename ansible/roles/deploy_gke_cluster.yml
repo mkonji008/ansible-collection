@@ -1,0 +1,44 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Set GCP project ID
+      set_fact:
+        project_id: "your-project-id"
+
+    - name: Authenticate to GCP using service account
+      community.google.gcp:
+        auth_kind: serviceaccount
+        service_account_file: "/path/to/your/service_account.json"
+
+    - name: Create GKE cluster
+      google.cloud.gcp_container_cluster:
+        name: "hugo-htmx-gke"
+        region: "us-central1"
+        machine_type: "e2-micro"
+        initial_node_count: 2
+        network: "default"
+        subnetwork: "default"
+        kubernetes_version: "1.24"
+
+    - name: Add firewall rules for cluster access
+      google.cloud.compute_firewall:
+        name: "allow-ssh-gke"
+        network: "default"
+        allow:
+          - protocol: tcp
+            ports:
+              - 22
+        source_ranges:
+          - "0.0.0.0/0"
+
+    - name: Update kubeconfig for local access
+      community.kubernetes.k8s_get_cluster_kube_config:
+        name: "hugo-htmx-gke"
+        dest: "~/.kube/config"
+
+  # todo add tasks for:
+  # - config additional service accounts with specific permissions
+  # - config cluster monitoring and logging

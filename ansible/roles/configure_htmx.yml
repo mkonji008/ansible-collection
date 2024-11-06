@@ -1,0 +1,32 @@
+---
+- hosts: gke
+  connection: kubernetes
+  gather_facts: no
+
+  tasks:
+    - name: Patch Hugo deployment to inject htmx script
+      kubernetes.apps.v1.deployment:
+        name: "hugo"
+        namespace: "hugo-site"
+        spec:
+          template:
+            spec:
+              containers:
+                - name: hugo
+                  lifecycle:
+                    postStart:
+                      exec:
+                        command:
+                          - sh
+                          - -c
+                          - "curl -s https://unpkg.com/htmx.org@1.8.0/dist/htmx.min.js | tee /app/public/assets/htmx.min.js"
+
+    - name: Update Hugo configuration
+      kubernetes.exec:
+        command: "hugo mod edit config.toml"
+        pts: "{{ lookup('file', '/path/to/your/hugo/config.toml') }}"
+        container: "hugo"
+        namespace: "hugo-site"
+
+  # todo tasks for:
+  # - deploy additional htmx-related resources (e.g., custom JavaScript, styles)
