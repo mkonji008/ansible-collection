@@ -57,7 +57,7 @@ A personal collection of Ansible playbooks for configuration management and depl
      
 11. **Helm Chart Repository with Ansible Automation**
     - Automates the creation of a private Helm chart repository on AWS S3 and GCP GCS. Hosts Helm charts for Redis, Nginx, and PostgreSQL with secure access and multi-environment support. Integrates with Jenkins ci/cd.
-    - Common project with many examples so less focused on getting this added to the repo at the moment. Several more interesting ones above to add.
+    - Common project with many examples so less focused on getting this added to the repo at the moment.
 
   --- 
-#### There are several more to add but will start with these 11 or so.
+#### There are more to add but will start with these 11 or so.
