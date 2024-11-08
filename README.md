@@ -33,31 +33,30 @@ A personal collection of Ansible playbooks for configuration management and depl
 4. **Redis & PostgreSQL High Availability Setup**
    - Configures a highly-available Redis and PostgreSQL cluster using Ansible on AWS/GCP. Automates failover, backups, and monitoring for a **cough** very bloated (Node.js) app using Redis for caching and PostgreSQL as the main database.
    - Not scrubbed, fully using Ansible and ***could*** be in this repo. Less interested in migrating this over as the node app was a massive dependency hell anyways, so having to accomidate for it bloated the inf provisioning and deployment automation as well. *Node, am I right?*
-
-
-6. **Multi-Environment ELK Stack with Fluentd Integration**
+      
+5. **Multi-Environment ELK Stack with Fluentd Integration**
    - Sets up a scalable ELK Stack on GCP using Ansible to manage centralized logging across multiple environments. Fluentd collects logs from whatever microservice app you are wanting this to integrate this into, sending them to Logstash and Elasticsearch for storage and analysis. Kibana is used for real time log monitoring, and the setup is designed for scalability and high availability.
    - Not started scrubbing my private lab repo yet. All deployed and configured using Ansible so it will be added here eventually when I have the time.
 
-7. **Nginx Reverse Proxy with SSL and DNS Configuration**
+6. **Nginx Reverse Proxy with SSL and DNS Configuration**
    - Sets up an Nginx reverse proxy on GCP with SSL and DNS management. Routes traffic between a React frontend and Go API backend in a dev environment for testing features.
    - Not started scrubbing, all using Ansible and will get to it at some point.
 
-8. **Serverless API with Ansible Automation**
+7. **Serverless API with Ansible Automation**
    - Deploy a cost efficient serverless API with AWS Lambda. Integrates with a Go-based backend via API Gateway. Includes monitoring and supports multiple environments for development and testing. This was used for video processing but generalizing the Ansible project for sake of versatility. 
    - Not yet scrubbed. Higher priority due to using this for an easy POC. 
 
-9. **HCP Vault & Consul Deployment**
+8. **HCP Vault & Consul Deployment**
    - Sets up HashiCorp Vault and Consul clusters using Ansible on AWS/GCP. Configures secure secret management and service discovery for a Go-based API service. Includes multi-region setup and disaster recovery... secrets are kinda important.
    - Sensitive stuff but all personal POC anyways, I'll get to this eventually as well.
 
-10. **CockroachDB Multi-Region Cluster**
+9. **CockroachDB Multi-Region Cluster**
    - Deploys a multi-cloud, multi-region CockroachDB cluster across AWS and GCP. Configures multi-environment support and automated backups for a Go application backend.
    - A more recent project that I'll scrub sooner than later while it's all fresh in my mind.
      
-11. **Helm Chart Repository with Ansible Automation**
+10. **Helm Chart Repository with Ansible Automation**
     - Automates the creation of a private Helm chart repository on AWS S3 and GCP GCS. Hosts Helm charts for Redis, Nginx, and PostgreSQL with secure access and multi-environment support. Integrates with Jenkins ci/cd.
     - Common project with many examples so less focused on getting this added to the repo at the moment.
 
   --- 
-#### There are more to add but will start with these 11 or so.
+#### There are more to add but will start with these inital 10. 
