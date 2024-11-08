@@ -1,6 +1,6 @@
 # Ansible Collection
 
-A personal collection of Ansible playbooks for configuration management and deployments across different environments. This repository includes a variety of projects, and I plan to add more as I refine and organize content from a larger private repository.
+A personal collection of Ansible playbooks for configuration management and deployments across different environments. This repository includes a variety of projects, and I plan to add more as I refine and organize content from a larger private repository of mine.
 
 ## Ansible Projects
 
