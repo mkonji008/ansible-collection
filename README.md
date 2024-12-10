@@ -32,7 +32,7 @@ A personal collection of Ansible playbooks for configuration management and depl
 
 4. **Redis & PostgreSQL High Availability Setup**
    - Configures a highly-available Redis and PostgreSQL cluster using Ansible on AWS/GCP. Automates failover, backups, and monitoring for a **cough** very bloated (Node.js) app using Redis for caching and PostgreSQL as the main database.
-   - Not scrubbed, fully using Ansible and ***could*** be in this repo. Less interested in migrating this over as the node app was a massive dependency hell anyways, so having to accomidate for it bloated the inf provisioning and deployment automation as well. *Node, am I right?*
+   - Not scrubbed, fully using Ansible and ***could*** be in this repo. Less interested in migrating this over as the node app was a massive dependency hell anyways, so having to accomidate for it bloated the inf provisioning and deployment automation as well. *Node.... right?*
       
 5. **Multi-Environment ELK Stack with Fluentd Integration**
    - Sets up a scalable ELK Stack on GCP using Ansible to manage centralized logging across multiple environments. Fluentd collects logs from whatever microservice app you are wanting this to integrate this into, sending them to Logstash and Elasticsearch for storage and analysis. Kibana is used for real time log monitoring, and the setup is designed for scalability and high availability.
@@ -59,4 +59,4 @@ A personal collection of Ansible playbooks for configuration management and depl
     - Common project with many examples so less focused on getting this added to the repo at the moment.
 
   --- 
-#### There are more to add but will start with these inital 10. 
+#### There are more to add but will start with these initial 10. 
